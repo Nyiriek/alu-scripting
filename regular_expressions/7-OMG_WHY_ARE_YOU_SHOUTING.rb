@@ -1,2 +1,2 @@
 #!/usr/bin/env ruby
-puts ARGV[0].match(/[[:upper:]]/)
+puts ARGV[0].scan(/[[:upper:]]/).join
