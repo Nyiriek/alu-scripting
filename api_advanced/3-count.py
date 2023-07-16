@@ -27,22 +27,22 @@ def count_words(subreddit, word_list, after='', hot_list=[]):
         if after is None:
             save = []
             for i in range(len(word_list)):
-                for j in range(i + 1, len(word_list)):
-                    if word_list[i].lower() == word_list[j].lower():
-                        save.append(j)
-                        hot_list[i] += hot_list[j]
+                for k in range(i + 1, len(word_list)):
+                    if word_list[i].lower() == word_list[k].lower():
+                        save.append(k)
+                        hot_list[i] += hot_list[k]
 
             for i in range(len(word_list)):
-                for j in range(i, len(word_list)):
+                for k in range(i, len(word_list)):
                     if (hot_list[j] > hot_list[i] or
-                            (word_list[i] > word_list[j] and
-                             hot_list[j] == hot_list[i])):
+                            (word_list[i] > word_list[k] and
+                             hot_list[k] == hot_list[i])):
                         a = hot_list[i]
-                        hot_list[i] = hot_list[j]
-                        hot_list[j] = a
+                        hot_list[i] = hot_list[k]
+                        hot_list[k] = a
                         a = word_list[i]
-                        word_list[i] = word_list[j]
-                        word_list[j] = a
+                        word_list[i] = word_list[k]
+                        word_list[k] = a
 
             for i in range(len(word_list)):
                 if (hot_list[i] > 0) and i not in save:
