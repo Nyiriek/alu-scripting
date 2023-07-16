@@ -10,7 +10,10 @@ def recurse(subreddit, hot_list=[]):
     params = {'after': after}
     res = requests.get(url, headers=headers, params=params)
     
-    if res.status == 200:
+    if res.status != 200:
+	return None
+
+    else:
         json_res = res.json()
         after = json_res.get('data').get('after')
         has_next = json_res.get('data').get('data') is not None
@@ -21,6 +24,3 @@ def recurse(subreddit, hot_list=[]):
         
         return recurse(subreddit, hot_list, after=after) if has_next \
             else hot_list
-        
-    else:
-        return None
